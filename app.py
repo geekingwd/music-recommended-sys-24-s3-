@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 
 # Load Preprocessed Data
-@st.cache
+@st.cache_data
 def load_data():
     scaled_model_data = pd.read_csv('data/scaled_model_data.csv')
     original_data = pd.read_csv('data/spotifytoptracks.csv')
@@ -11,8 +11,8 @@ def load_data():
 
 scaled_model_data, original_data = load_data()
 
-# Ensure cosine and Euclidean similarity matrices are cached
-@st.cache
+# Compute Similarity Matrices
+@st.cache_data
 def compute_similarity_matrices(data):
     # Compute cosine similarity
     cosine_similarity_matrix = cosine_similarity(data.values)
